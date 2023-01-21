@@ -1,3 +1,8 @@
+function Echo(...args) {
+  console.log("hello world", args);
+  return args;
+}
+
 function Data() {
   Process(
     "yao.table.Insert",
