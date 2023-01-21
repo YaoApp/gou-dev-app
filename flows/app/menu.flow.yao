@@ -1,0 +1,55 @@
+{
+  "name": "APP Menu",
+  "nodes": [
+    {
+      "name": "UserID",
+      "process": "session.Get",
+      "args": ["user_id"]
+    },
+    {
+      "name": "SessionRoute",
+      "process": "utils.str.Concat",
+      "path": "/x/Form/session/xxx/edit",
+      "args": ["/x/Form/session/", "{{$res.UserID}}", "/edit"]
+    },
+    {
+      "name": "Print",
+      "process": "utils.fmt.Print",
+      "args": [
+        "---flows.app.menu---",
+        "{{$res.UserID}}",
+        "{{$res.SessionRoute}}",
+        "---flows.app.menu end---"
+      ]
+    }
+  ],
+  "output": {
+    "setting": [
+      {
+        "icon": "icon-settings",
+        "id": 999999,
+        "name": "Setting",
+        "path": "/x/Form/pet/1/edit",
+        "dot": true,
+        "children": [
+          {
+            "id": 10002,
+            "name": "Notification",
+            "badge": 24,
+            "path": "/x/Form/pet/1/edit"
+          },
+          { "id": 10002, "name": "System Setting", "path": "/setting" }
+        ]
+      }
+    ],
+    "items": [
+      {
+        "icon": "icon-activity",
+        "id": 1,
+        "name": "Charts",
+        "parent": null,
+        "path": "/x/Chart/dashboard"
+      }
+    ]
+  }
+}

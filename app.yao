@@ -1,0 +1,13 @@
+/**
+ * Yao app for gou developing & unit testing
+ */
+{
+  "name": "::Demo Application",
+  "short": "::Demo",
+  "description": "::Another yao application",
+  "version": "0.10.3", // the application version
+  "setup": "scripts.demo.Data", // the process executed when installing
+  "adminRoot": "admin",
+  "optional": { "hideNotification": true, "hideSetting": false },
+  "menu": { "process": "flows.app.menu", "args": ["demo"] }
+}
