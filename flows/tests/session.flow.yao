@@ -1,0 +1,34 @@
+{
+  "label": "Session",
+  "version": "1.0.0",
+  "description": "Session TestFlow",
+  "nodes": [
+    {
+      "name": "ID",
+      "process": "session.Get",
+      "args": ["id"]
+    },
+    {
+      "name": "User",
+      "engine": "test-db",
+      "query": {
+        "select": ["id", "name", "type"],
+        "from": "$user",
+        "wheres": [{ ":id": "用户ID", "=": "?:$res.ID" }],
+        "first": true
+      }
+    },
+    {
+      "name": "设定用户类型",
+      "process": "session.Set",
+      "args": ["type", "{{$res.User.type}}"]
+    },
+    { "name": "SessionData", "process": "session.Dump" }
+  ],
+  "output": {
+    "ID": "{{$res.ID}}",
+    "SessionData": "{{$res.SessionData}}",
+    "Global": "{{$global}}",
+    "User": "{{$res.User}}"
+  }
+}

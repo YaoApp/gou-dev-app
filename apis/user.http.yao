@@ -1,0 +1,50 @@
+{
+  "name": "User REST API",
+  "version": "1.0.0",
+  "description": "User REST API",
+  "guard": "bearer-jwt",
+  "paths": [
+    {
+      "path": "/hello",
+      "method": "GET",
+      "process": "scripts.test.hello",
+      "in": ["world"],
+      "out": { "status": 200, "type": "application/json" }
+    },
+    {
+      "path": "/auth/:name",
+      "method": "POST",
+      "guard": "scripts.app.test.Auth",
+      "process": "scripts.test.hello",
+      "in": ["world"],
+      "out": { "status": 200, "type": "application/json" }
+    },
+    {
+      "path": "/session/in",
+      "method": "GET",
+      "process": "models.user.Find",
+      "in": ["$session.id", ":params"],
+      "out": { "status": 200, "type": "application/json" }
+    },
+    {
+      "path": "/session/flow",
+      "method": "GET",
+      "process": "flows.tests.session",
+      "in": [],
+      "out": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "User-Agent": "?:SessionData.id"
+        }
+      }
+    },
+    {
+      "path": "/info/:id",
+      "method": "GET",
+      "process": "models.user.Find",
+      "in": ["$param.id", ":params"],
+      "out": { "status": 200, "type": "application/json" }
+    }
+  ]
+}
