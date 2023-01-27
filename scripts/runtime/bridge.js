@@ -116,25 +116,10 @@ function ValueOfObject(value) {
     float: 0.618,
     nests: { string: "foo", int: 99, float: 0.618, bigint: 99 },
   };
-  const compare = (o1, o2) => {
-    if (o1.string != o2.string) {
-      return false;
-    }
-    if (o1.int != o2.int) {
-      return false;
-    }
-    if (o1.bigint != o2.bigint) {
-      return false;
-    }
-    if (o1.float != o2.float) {
-      return false;
-    }
-    return true;
-  };
 
   return {
     typeof: typeof value,
-    check: compare(jsValue, value) && compare(jsValue.nests, value.nests),
+    check: deepEqual(jsValue, value),
     value: jsValue,
   }; // "object"  go: map[string]interface{}
 }
@@ -151,36 +136,20 @@ function ReturnObject() {
 
 // js: object(array)  go: []interface{}
 function ValueOfArray(value) {
+  const jsMap = {
+    string: "foo",
+    int: 99,
+    bigint: 99,
+    float: 0.618,
+    nests: { string: "foo", int: 99, float: 0.618, bigint: 99 },
+  };
+
+  const jsArr = ["foo", 99, 0.618, 99, jsMap];
+  const jsValue = [...jsArr, jsArr];
   return {
     typeof: typeof value,
-    check:
-      value ===
-      [
-        "foo",
-        99,
-        0.618,
-        BigInt(99),
-        {
-          string: "foo",
-          int: 99,
-          bigint: BigInt(99),
-          float: 0.618,
-          nests: { int: 99, float: 0.618, bigint: BigInt(99) },
-        },
-        [
-          "foo",
-          99,
-          0.618,
-          BigInt(99),
-          {
-            string: "foo",
-            int: 99,
-            bigint: BigInt(99),
-            float: 0.618,
-            nests: { int: 99, float: 0.618, bigint: BigInt(99) },
-          },
-        ],
-      ],
+    check: deepEqual(value, jsValue),
+    value: jsValue,
   };
 } // "object" go: []interface{}
 function ReturnArray() {
@@ -214,9 +183,12 @@ function ReturnArray() {
 
 // js: object(Int32Array)  go: []byte
 function ValueOfInt32Array(value) {
-  const int32 = new Int32Array(2);
-  int32[0] = 42;
-  return { typeof: typeof value, check: value === int32 }; // "object" go: []byte
+  const bytes = new Uint8Array(1);
+  bytes[0] = 0x2a;
+  return {
+    typeof: typeof value,
+    check: value[0] === bytes[0] && value.length == bytes.length,
+  }; // "object" go: []byte
 }
 function ReturnInt32Array() {
   const int32 = new Int32Array(2);
@@ -261,4 +233,13 @@ function ReturnPromiseInt(value) {
     }
     reject(new Error("PromiseInt Error"));
   });
+}
+
+function deepEqual(x, y) {
+  return x && y && typeof x === "object" && typeof y === "object"
+    ? Object.keys(x).length === Object.keys(y).length &&
+        Object.keys(x).reduce(function (isEqual, key) {
+          return isEqual && deepEqual(x[key], y[key]);
+        }, true)
+    : x === y;
 }
