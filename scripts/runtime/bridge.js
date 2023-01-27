@@ -181,8 +181,8 @@ function ReturnArray() {
   ];
 }
 
-// js: object(Int32Array)  go: []byte
-function ValueOfInt32Array(value) {
+// js: object(Uint8Array)  go: []byte
+function ValueOfUint8Array(value) {
   const bytes = new Uint8Array(1);
   bytes[0] = 0x2a;
   return {
@@ -190,7 +190,7 @@ function ValueOfInt32Array(value) {
     check: value[0] === bytes[0] && value.length == bytes.length,
   }; // "object" go: []byte
 }
-function ReturnInt32Array() {
+function ReturnUint8Array() {
   const int32 = new Int32Array(2);
   int32[0] = 42;
   return int32;
