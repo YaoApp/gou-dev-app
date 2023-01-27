@@ -1,3 +1,3 @@
 function Hello(...args) {
-  return args;
+  return args[0];
 }
