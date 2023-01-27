@@ -196,6 +196,24 @@ function ReturnUint8Array() {
   return int32;
 }
 
+function ValueOfStruct(value) {
+  const jsValue = {
+    String: "foo",
+    Int: 99,
+    Basic: { String: "bar", Int: 66 },
+  };
+
+  return {
+    typeof: typeof value,
+    check: deepEqual(jsValue, value),
+  }; // "object" go: []byte
+}
+function ReturnStruct() {
+  return (arg) => {
+    return arg;
+  };
+}
+
 function ValueOfFunction(callback) {
   return callback("hello");
 }
