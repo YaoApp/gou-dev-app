@@ -123,15 +123,15 @@ function ValueOfObject(value) {
     value: jsValue,
   }; // "object"  go: map[string]interface{}
 }
-
 function ReturnObject() {
-  return {
+  const jsValue = {
     string: "foo",
     int: 99,
-    bigint: BigInt(99),
+    bigint: 99,
     float: 0.618,
-    nests: { string: "foo", int: 99, float: 0.618, bigint: BigInt(99) },
+    nests: { string: "foo", int: 99, float: 0.618, bigint: 99 },
   };
+  return jsValue;
 }
 
 // js: object(array)  go: []interface{}
@@ -153,32 +153,17 @@ function ValueOfArray(value) {
   };
 } // "object" go: []interface{}
 function ReturnArray() {
-  return [
-    "foo",
-    99,
-    0.618,
-    BigInt(99),
-    {
-      string: "foo",
-      int: 99,
-      bigint: BigInt(99),
-      float: 0.618,
-      nests: { int: 99, float: 0.618, bigint: BigInt(99) },
-    },
-    [
-      "foo",
-      99,
-      0.618,
-      BigInt(99),
-      {
-        string: "foo",
-        int: 99,
-        bigint: BigInt(99),
-        float: 0.618,
-        nests: { int: 99, float: 0.618, bigint: BigInt(99) },
-      },
-    ],
-  ];
+  const jsMap = {
+    string: "foo",
+    int: 99,
+    bigint: 99,
+    float: 0.618,
+    nests: { string: "foo", int: 99, float: 0.618, bigint: 99 },
+  };
+
+  const jsArr = ["foo", 99, 0.618, 99, jsMap];
+  const jsValue = [...jsArr, jsArr];
+  return jsValue;
 }
 
 // js: object(Uint8Array)  go: []byte
@@ -191,9 +176,9 @@ function ValueOfUint8Array(value) {
   }; // "object" go: []byte
 }
 function ReturnUint8Array() {
-  const int32 = new Int32Array(2);
-  int32[0] = 42;
-  return int32;
+  const uint32 = new Uint8Array(1);
+  uint32[0] = 0x2a;
+  return uint32;
 }
 
 function ValueOfStruct(value) {
@@ -207,11 +192,6 @@ function ValueOfStruct(value) {
     typeof: typeof value,
     check: deepEqual(jsValue, value),
   }; // "object" go: []byte
-}
-function ReturnStruct() {
-  return (arg) => {
-    return arg;
-  };
 }
 
 function ValueOfFunction(callback) {
