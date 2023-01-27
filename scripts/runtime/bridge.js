@@ -65,7 +65,7 @@ function ReturnUndefined() {
 
 // js: boolean  go: bool
 function ValueOfBoolean(value) {
-  return { typeof: typeof value, check: value === (true || false) }; // "boolean"  go: bool
+  return { typeof: typeof value, check: value === true || value === false }; // "boolean"  go: bool
 }
 function ReturnBoolean() {
   return true;
@@ -81,7 +81,11 @@ function ReturnNumberInt() {
 
 // js: number(float)  go: float64
 function ValueOfNumberFloat(value) {
-  return { typeof: typeof value, check: value === 0.618 }; // "number" | float  go: float64
+  return {
+    typeof: typeof value,
+    check: value.toFixed(3) === "0.618",
+    value: `${value}`,
+  }; // "number" | float  go: float64
 }
 function ReturnNumberFloat() {
   return 0.618;
@@ -105,26 +109,43 @@ function ReturnString() {
 
 // js: object  go: map[string]interface{}
 function ValueOfObject(value) {
+  const jsValue = {
+    string: "foo",
+    int: 99,
+    bigint: 99,
+    float: 0.618,
+    nests: { string: "foo", int: 99, float: 0.618, bigint: 99 },
+  };
+  const compare = (o1, o2) => {
+    if (o1.string != o2.string) {
+      return false;
+    }
+    if (o1.int != o2.int) {
+      return false;
+    }
+    if (o1.bigint != o2.bigint) {
+      return false;
+    }
+    if (o1.float != o2.float) {
+      return false;
+    }
+    return true;
+  };
+
   return {
     typeof: typeof value,
-    check:
-      value ===
-      {
-        string: "foo",
-        int: 99,
-        bigint: BigInt(99),
-        float: 0.618,
-        nests: { int: 99, float: 0.618, bigint: BigInt(99) },
-      },
+    check: compare(jsValue, value) && compare(jsValue.nests, value.nests),
+    value: jsValue,
   }; // "object"  go: map[string]interface{}
 }
+
 function ReturnObject() {
   return {
     string: "foo",
     int: 99,
     bigint: BigInt(99),
     float: 0.618,
-    nests: { int: 99, float: 0.618, bigint: BigInt(99) },
+    nests: { string: "foo", int: 99, float: 0.618, bigint: BigInt(99) },
   };
 }
 
