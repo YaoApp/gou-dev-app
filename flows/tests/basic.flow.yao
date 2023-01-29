@@ -10,7 +10,7 @@
         {
           "select": ["id", "name"],
           "limit": 3,
-          "orders": [{ "column": "created_at", "option": "desc" }]
+          "orders": [{ "column": "id", "option": "desc" }]
         }
       ]
     },
@@ -20,7 +20,7 @@
       "args": [
         {
           "select": ["id", "name", "mobile"],
-          "orders": [{ "column": "created_at", "option": "desc" }],
+          "orders": [{ "column": "id", "option": "desc" }],
           "wheres": [{ "column": "status", "value": "enabled" }]
         },
         1,
@@ -39,6 +39,7 @@
           { ":created_at": "Created date", ">=": "?:$in[0]" },
           { ":created_at": "Created date", "<=": "?:$in[1]" }
         ],
+        "orders": "id asc",
         "limit": 3
       },
       "outs": ["{{$out}}"]
