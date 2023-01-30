@@ -3,6 +3,6 @@
   "description": "A form widget. users can design forms online",
   "version": "0.1.0",
   "root": "dyforms",
-  "extension": ".form.json",
+  "extensions": [".form.yao"],
   "modules": ["Apis", "Models", "Tables", "Tasks"]
 }
