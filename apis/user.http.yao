@@ -7,15 +7,15 @@
     {
       "path": "/hello",
       "method": "GET",
-      "process": "scripts.test.hello",
+      "process": "scripts.test.api.hello",
       "in": ["world"],
       "out": { "status": 200, "type": "application/json" }
     },
     {
       "path": "/auth/:name",
       "method": "POST",
-      "guard": "scripts.app.test.Auth",
-      "process": "scripts.test.hello",
+      "guard": "scripts.test.api.Auth",
+      "process": "scripts.test.api.hello",
       "in": ["world"],
       "out": { "status": 200, "type": "application/json" }
     },

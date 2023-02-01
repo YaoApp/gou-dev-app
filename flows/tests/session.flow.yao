@@ -10,8 +10,9 @@
     },
     {
       "name": "User",
-      "engine": "test-db",
+      "engine": "query-test",
       "query": {
+        // "debug": true,
         "select": ["id", "name", "type"],
         "from": "$user",
         "wheres": [{ ":id": "用户ID", "=": "?:$res.ID" }],
@@ -19,7 +20,7 @@
       }
     },
     {
-      "name": "设定用户类型",
+      "name": "SetUserType",
       "process": "session.Set",
       "args": ["type", "{{$res.User.type}}"]
     },
@@ -29,6 +30,8 @@
     "ID": "{{$res.ID}}",
     "SessionData": "{{$res.SessionData}}",
     "Global": "{{$global}}",
-    "User": "{{$res.User}}"
+    "User": "{{$res.User}}",
+    "Args": "{{$in}}",
+    "Res": "{{$res}}"
   }
 }
