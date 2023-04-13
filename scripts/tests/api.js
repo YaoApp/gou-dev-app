@@ -2,6 +2,18 @@ function hello(name) {
   return "hello:" + name;
 }
 
+// Stream unit-test
+function Stream(payload) {
+  for (var i = 0; i < 10; i++) {
+    if (i == 5) {
+      cancel();
+      return;
+    }
+    ssEvent("message", { foo: `${payload.foo}${i}` });
+    time.Sleep(200);
+  }
+}
+
 // Process Guard
 function Auth(path, params, query, payload, headers) {
   if (params["name"] != "hi") {

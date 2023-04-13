@@ -1,0 +1,15 @@
+{
+  "name": "Stream Test API",
+  "version": "1.0.0",
+  "description": "Stream Test API",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "/unit/test",
+      "method": "POST",
+      "process": "scripts.test.api.Stream",
+      "in": [":payload"],
+      "out": { "stream": "yes" }
+    }
+  ]
+}
