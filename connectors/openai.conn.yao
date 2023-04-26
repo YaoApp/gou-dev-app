@@ -1,0 +1,11 @@
+{
+  "LANG": "1.0.0",
+  "VERSION": "1.0.0",
+  "label": "OPENAI TEST",
+  "type": "openai",
+  "options": {
+    "proxy": "http://127.0.0.1:8080",
+    "model": "gpt-3.5-turbo",
+    "key": "$ENV.OPENAI_TEST_KEY"
+  }
+}
