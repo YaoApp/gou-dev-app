@@ -9,7 +9,7 @@
       "method": "POST",
       "process": "scripts.test.api.Stream",
       "in": [":payload"],
-      "out": { "stream": true }
+      "out": { "type": "text/event-stream;charset=UTF-8" }
     }
   ]
 }
