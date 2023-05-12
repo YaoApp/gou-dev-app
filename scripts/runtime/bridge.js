@@ -42,7 +42,8 @@
  *  | []interface{}           | array                 |
  *  | []byte                  | object(Uint8Array)    |
  *  | struct                  | object                |
- *  | func                    | function              |
+ *  | bridge.Promise          | object(Promise)       |
+ *  | bridge.Function         | function              |
  *  ---------------------------------------------------
  *
  */
@@ -210,6 +211,10 @@ async function ReturnAsync(callback, value) {
   } catch (err) {
     return err;
   }
+}
+
+function ValueOfPromise(promise) {
+  return promise;
 }
 
 function ReturnPromiseString(value) {
