@@ -33,10 +33,11 @@
  *  | int8                    | number(int)           |
  *  | int16                   | number(int)           |
  *  | int32                   | number(int)           |
+ *  | int64                   | number(int)           |
+ *  | uint64                  | number(int)           |
  *  | float32                 | number(float)         |
  *  | float64                 | number(float)         |
- *  | int64                   | bigint                |
- *  | uint64                  | bigint                |
+ *  | *big.Int                | bigint                |
  *  | string                  | string                |
  *  | map[string]interface{}  | object                |
  *  | []interface{}           | array                 |
