@@ -169,18 +169,30 @@ function ReturnArray() {
 }
 
 // js: object(Uint8Array)  go: []byte
-function ValueOfUint8Array(value) {
-  const bytes = new Uint8Array(1);
-  bytes[0] = 0x2a;
+function ValueUint8Array(value) {
+  let arr = new Uint8Array(2);
+  arr[0] = 0x1a;
+  arr[1] = 0x2a;
   return {
     typeof: typeof value,
-    check: value[0] === bytes[0] && value.length == bytes.length,
+    check:
+      value[0] === arr[0] && value[1] === arr[1] && value.length == arr.length,
   }; // "object" go: []byte
 }
+
+// js object(Uint8Array)  go: []byte
 function ReturnUint8Array() {
-  const uint32 = new Uint8Array(1);
-  uint32[0] = 0x2a;
-  return uint32;
+  let buf = new Uint8Array(2);
+  buf[0] = 0x1a;
+  buf[1] = 0x2a;
+  return buf;
+}
+
+function ReturnSharedArrayBuffer() {
+  let buf = new SharedArrayBuffer(1);
+  let arr = new Int8Array(buf);
+  arr[0] = 0x2a;
+  return buf;
 }
 
 function ValueOfStruct(value) {
