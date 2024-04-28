@@ -18,9 +18,45 @@
       "type": "bigInteger",
       "index": true,
       "nullable": true
+    },
+    {
+      "label": "Owner",
+      "name": "owner_id",
+      "type": "bigInteger",
+      "index": true,
+      "nullable": true
+    },
+    {
+      "label": "Doctor",
+      "name": "doctor_id",
+      "type": "bigInteger",
+      "index": true,
+      "nullable": true
     }
   ],
-  "relations": {},
+  "relations": {
+    "category": {
+      "type": "hasOne",
+      "model": "category",
+      "foreign": "category_id",
+      "key": "id",
+      "query": { "select": ["id", "name"] }
+    },
+    "owner": {
+      "type": "hasOne",
+      "model": "user",
+      "foreign": "owner_id",
+      "key": "id",
+      "query": { "select": ["id", "name", "email"] }
+    },
+    "doctor": {
+      "type": "hasOne",
+      "model": "user",
+      "foreign": "doctor_id",
+      "key": "id",
+      "query": { "select": ["id", "name", "email"] }
+    }
+  },
   "values": [],
   "indexes": [],
   "option": { "timestamps": true, "soft_deletes": true }

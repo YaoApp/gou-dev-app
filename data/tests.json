@@ -1,0 +1,49 @@
+{
+  "user": [
+    {
+      "name": "John Doe",
+      "mobile": "1234567890",
+      "email": "John@moapi.ai",
+      "extra": { "sex": "male" }
+    },
+    {
+      "name": "Lucy Queen",
+      "mobile": "0987654321",
+      "email": "Lucy@moapi.ai",
+      "extra": { "sex": "female" }
+    }
+  ],
+  "category": [
+    { "name": "Dog" },
+    { "name": "Cat" },
+    { "name": "Bird" },
+    { "name": "Fish" }
+  ],
+
+  "pet": [
+    {
+      "name": "Tommy",
+      "category_id": 1,
+      "owner_id": 1,
+      "doctor_id": 2
+    },
+    {
+      "name": "Kitty",
+      "category_id": 2,
+      "owner_id": 2,
+      "doctor_id": 1
+    },
+    {
+      "name": "Tweety",
+      "category_id": 3,
+      "owner_id": 1,
+      "doctor_id": 2
+    },
+    {
+      "name": "Nemo",
+      "category_id": 4,
+      "owner_id": 2,
+      "doctor_id": 1
+    }
+  ]
+}
