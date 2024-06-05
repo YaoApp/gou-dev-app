@@ -1,4 +1,5 @@
 import * as Hello from "./lib/hello";
+import { Process } from "./lib/yao";
 import { World as MyWorld, Add, Now, Foo } from "./lib/hello";
 import {
   World as TheLongestFunctionNameInTheWorld,
