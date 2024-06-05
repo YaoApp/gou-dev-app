@@ -1,3 +1,4 @@
+import { Now } from "./hello";
 export function Foo(): string {
-  return "Foo";
+  return `Foo ${Now()}`;
 }
