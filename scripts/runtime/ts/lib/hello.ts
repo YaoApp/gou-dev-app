@@ -1,3 +1,13 @@
+// This is a simple function that returns a string
+// import { Foo as MyFoo } from "./foo";
+
+/**
+ * This is a simple function that returns a string
+ *  import { Foo as MyFoo } from "./foo";
+ * @returns {string} - Returns a string
+ *
+ */
+
 import { Foo as MyFoo } from "./foo";
 
 export function World(): string {
