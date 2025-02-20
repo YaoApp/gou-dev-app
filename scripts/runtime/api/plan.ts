@@ -18,26 +18,26 @@ function TestPlan() {
     }
   });
 
-  plan.AddTask("task-1", 1, (task, shared) => {
+  plan.Add("task-1", 1, (task, shared) => {
     shared.Set("foo", "hello");
     time.Sleep(1000);
     task.Notify("task-1 message");
   });
 
-  plan.AddTask("task-2", 1, (task, shared) => {
+  plan.Add("task-2", 1, (task, shared) => {
     shared.Set("bar", "world");
     time.Sleep(500);
     task.Notify("task-2 message");
   });
 
-  plan.AddTask("task-3", 2, (task, shared) => {
+  plan.Add("task-3", 2, (task, shared) => {
     const foo = shared.Get("foo");
     console.log(foo);
     time.Sleep(500);
     task.Notify("task-3 message");
   });
 
-  plan.AddTask("task-4", 2, (task, shared) => {
+  plan.Add("task-4", 2, (task, shared) => {
     const bar = shared.Get("bar");
     console.log(bar);
     time.Sleep(500);
@@ -60,7 +60,7 @@ function testPlanAsync() {
     console.log(task.Data());
   });
 
-  plan.AddTask("task-1", 1, (task, shared) => {
+  plan.Add("task-1", 1, (task, shared) => {
     shared.Set("foo", "hello");
     time.Sleep(1000);
     task.Notify("task-1 message");

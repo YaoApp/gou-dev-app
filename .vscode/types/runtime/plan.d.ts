@@ -53,7 +53,7 @@ export declare class Plan {
    * @param task_id - The ID of the task
    * @param task_fn - The function to execute for the task
    */
-  AddTask(task_id: string, order: number, task_fn: PlanTaskFn): void;
+  Add(task_id: string, order: number, task_fn: PlanTaskFn): void;
 
   /**
    * Run the plan, synchronously
