@@ -11,30 +11,6 @@ export type PlanStatus =
   | "unknown";
 
 /**
- * The event type of a plan or task
- */
-export type PlanEventType = "message" | "status" | "data" | "error";
-
-/**
- * The event of a plan or task
- */
-export type PlanEvent = { type: PlanEventType; message: string };
-
-/**
- * The function to execute for a task
- */
-export type PlanTaskFn = (task: PlanTask, shared: PlanSharedData) => void;
-
-/**
- * The function to execute when the plan changes
- */
-export type SubscribeFn = (
-  task: PlanTask,
-  shared: PlanSharedData,
-  event: PlanEvent
-) => void;
-
-/**
  * The plan class
  */
 export declare class Plan {
@@ -45,15 +21,24 @@ export declare class Plan {
 
   /**
    * Subscribe to the plan
+   * @param key - The key to subscribe to
    * @param subscribe_fn - The function to execute when the plan changes
    */
-  Subscribe(subscribe_fn: SubscribeFn): void;
+  Subscribe(key: string, subscribe_fn: string, ...subscribe_args: any[]): void;
 
   /**
+   * Add a task to the plan
    * @param task_id - The ID of the task
-   * @param task_fn - The function to execute for the task
+   * @param order - The order of the task
+   * @param task_process - The process to execute for the task
+   * @param task_args - The arguments to pass to the task
    */
-  Add(task_id: string, order: number, task_fn: PlanTaskFn): void;
+  Add(
+    task_id: string,
+    order: number,
+    task_process: string,
+    ...task_args: any[]
+  ): void;
 
   /**
    * Run the plan, synchronously
@@ -61,14 +46,9 @@ export declare class Plan {
   Run(): void;
 
   /**
-   * Start the plan, asynchronously
+   * Release the plan
    */
-  Start(): void;
-
-  /**
-   * Stop the plan, asynchronously
-   */
-  Stop(): void;
+  Release(): void;
 
   /**
    * Get the status and each task's status
@@ -87,54 +67,24 @@ export declare class Plan {
    * Get or set the data of a task, if no data is provided, the current data is returned, otherwise the data is set and the previous data is returned
    */
   TaskData(task_id: string, data?: any): any;
-}
-
-export declare class PlanTask {
-  /**
-   * Get the plan that the task belongs to
-   */
-  Plan: Plan;
-
-  constructor(plan: Plan, task_id: string);
 
   /**
-   * Notify the task
-   * @param message - The message to notify
-   */
-  Notify(message: string): void;
-
-  /**
-   * Get the status of the task
-   */
-  Status(): PlanStatus;
-
-  /**
-   * Get or set the data of the task, if no data is provided, the current data is returned, otherwise the data is set and the previous data is returned
-   */
-  Data(data?: any): any;
-
-  /**
-   * Retry the task, only available for failed tasks
-   */
-  Retry(): void;
-}
-
-/**
- * The shared data class for a plan
- */
-export declare class PlanSharedData {
-  /**
-   * Set the data of a key
-   */
-  Set(key: string, value: any): void;
-
-  /**
-   * Get the data of a key
+   * Get shared data
    */
   Get(key: string): any;
 
   /**
-   * Delete the data of a key
+   * Set shared data
+   */
+  Set(key: string, value: any): void;
+
+  /**
+   * Delete shared data
    */
   Del(key: string): void;
+
+  /**
+   * Clear shared data
+   */
+  Clear(): void;
 }

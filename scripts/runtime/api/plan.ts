@@ -1,84 +1,72 @@
 import { Plan, time } from "@yao/runtime";
 
-function TestPlan() {
+function Test() {
+  const namespace = "scripts.runtime.api.plan";
+
   const plan = new Plan("test-plan");
+  plan.Subscribe("TaskStarted", `${namespace}.TaskStarted`, "foo");
+  plan.Subscribe("TaskCompleted", `${namespace}.TaskCompleted`, "foo");
+  plan.Subscribe("some-key", `${namespace}.SomeKey`, "bar");
 
-  // Subscribe to the plan events
-  plan.Subscribe((task, shared, event) => {
-    console.log(event);
-    console.log(shared.Get("foo"));
-    console.log(shared.Get("bar"));
-    console.log(task.Data());
-    console.log(task.Status());
-    console.log(plan.Status());
-
-    // retry the task
-    if (task.Status() === "failed") {
-      task.Retry();
-    }
-  });
-
-  plan.Add("task-1", 1, (task, shared) => {
-    shared.Set("foo", "hello");
-    time.Sleep(1000);
-    task.Notify("task-1 message");
-  });
-
-  plan.Add("task-2", 1, (task, shared) => {
-    shared.Set("bar", "world");
-    time.Sleep(500);
-    task.Notify("task-2 message");
-  });
-
-  plan.Add("task-3", 2, (task, shared) => {
-    const foo = shared.Get("foo");
-    console.log(foo);
-    time.Sleep(500);
-    task.Notify("task-3 message");
-  });
-
-  plan.Add("task-4", 2, (task, shared) => {
-    const bar = shared.Get("bar");
-    console.log(bar);
-    time.Sleep(500);
-    task.Notify("task-4 message");
-  });
-
-  const ts = new Date();
-  plan.Run(); // Run the plan synchronously
-  console.log(`run: ${new Date().getTime() - ts.getTime()}`);
+  plan.Add("task-1", 1, `${namespace}.Task1`, "foo1");
+  plan.Add("task-2", 1, `${namespace}.Task2`, "foo2");
+  plan.Add("task-3", 2, `${namespace}.Task3`, "foo3");
+  plan.Add("task-4", 2, `${namespace}.Task4`, "foo4");
+  plan.Run();
+  plan.Release();
+  return "Done";
 }
 
-function testPlanAsync() {
-  const plan = new Plan("test-plan");
+function Task1(plan_id: string, task_id: string, foo: string) {
+  const plan = new Plan(plan_id);
+  plan.Set("some-key", `foo-${foo}`);
+  time.Sleep(200);
+  const ts = new Date().getTime();
+  return ts;
+}
 
-  // Subscribe to the plan events
-  plan.Subscribe((task, shared, event) => {
-    console.log(event);
-    console.log(shared.Get("foo"));
-    console.log(task.Status());
-    console.log(task.Data());
-  });
+function Task2(plan_id: string, task_id: string, foo: string) {
+  time.Sleep(300);
+  const ts = new Date().getTime();
+  return ts;
+}
 
-  plan.Add("task-1", 1, (task, shared) => {
-    shared.Set("foo", "hello");
-    time.Sleep(1000);
-    task.Notify("task-1 message");
-  });
+function Task3(plan_id: string, task_id: string, foo: string) {
+  const plan = new Plan(plan_id);
+  const some = plan.Get("some-key");
 
-  const ts = new Date();
-  plan.Start();
-  console.log(`start: ${new Date().getTime() - ts.getTime()}`);
+  // Update the shared data
+  plan.Set("some-key", `bar-${foo}`);
+  time.Sleep(400);
+  const ts = new Date().getTime();
+  return { ts: ts, shared: some };
+}
 
+function Task4(plan_id: string, task_id: string, foo: string) {
+  const plan = new Plan(plan_id);
   time.Sleep(500);
+  const some = plan.Get("some-key");
+  const ts = new Date().getTime();
+  return { ts: ts, shared: some };
+}
+
+function SomeKey(plan_id: string, key: string, data: any, foo: string) {
+  const plan = new Plan(plan_id);
+  const ts = new Date().getTime();
+  console.log(`SomeKey ${plan_id} ${key} ${JSON.stringify(data)} ${foo} ${ts}`);
   console.log(plan.Status());
-  console.log(`500: ${new Date().getTime() - ts.getTime()}`);
+}
 
-  const p2 = new Plan("test-plan");
+function TaskStarted(plan_id: string, key: string, data: any, foo: string) {
+  const ts = new Date().getTime();
+  console.log(
+    `TaskStarted ${plan_id} ${key} ${JSON.stringify(data)} ${foo} ${ts}`
+  );
+}
 
-  time.Sleep(501);
-  console.log(p2.Status());
-  console.log(`501: ${new Date().getTime() - ts.getTime()}`);
-
-  p2.Stop(); // stop the plan, clear the shared data
+function TaskCompleted(plan_id: string, key: string, data: any, foo: string) {
+  const ts = new Date().getTime();
+  console.log(
+    `TaskCompleted ${plan_id} ${key} ${JSON.stringify(data)} ${foo} ${ts}`
+  );
 }
