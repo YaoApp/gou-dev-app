@@ -1,0 +1,11 @@
+{
+  "LANG": "1.0.0",
+  "VERSION": "1.0.0",
+  "label": "FASTEMBED TEST",
+  "type": "fastembed",
+  "options": {
+    "host": "$ENV.FASTEMBED_TEST_HOST",
+    "model": "$ENV.FASTEMBED_TEST_MODEL",
+    "key": "$ENV.FASTEMBED_TEST_KEY"
+  }
+}
