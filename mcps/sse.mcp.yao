@@ -1,5 +1,5 @@
 {
-  "type": "sse",
+  "transport": "sse",
   "label": "MCP Client SSE Test",
   "description": "MCP Client SSE Test",
   "name": "sse",

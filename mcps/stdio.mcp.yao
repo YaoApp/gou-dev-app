@@ -1,5 +1,5 @@
 {
-  "type": "stdio",
+  "transport": "stdio",
   "label": "MCP Client STDIO Test",
   "description": "MCP Client STDIO Test",
   "name": "stdio",
