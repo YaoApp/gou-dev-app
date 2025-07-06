@@ -1,0 +1,146 @@
+{
+  "label": "Webpage MCP server",
+  "description": "An MCP server for creating webpages, it's an demo for MCP server",
+  "guard": "bearer-jwt",
+  "transports": ["stdio", "http", "sse"],
+  "capabilities": {
+    "prompts": { "listChanged": true },
+    "resources": { "listChanged": true, "subscribe": true },
+    "tools": { "listChanged": true }
+  },
+
+  // === Resources ===
+  // `resources` defines the static set of resources that this MCP server exposes to clients.
+  // To support dynamic resources, bind the "resources" field to a Yao process, for example:
+  // "resources": "scripts.mcp.webpage.Resources"
+  //
+  // The MCP server will then call the process to get the resources.
+  // The process should return an array of resources.
+  // The resources should be in the format of:
+  // [
+  //  {
+  //    "name": "Settings",
+  //    "description": "Access settings of the webpage",
+  //    "uri": "yao://scripts/mcp/webpage/Settings",
+  //    "mimeType": "application/json"
+  //  },
+  //  {
+  //    "name": "Articles",
+  //    "description": "Access articles for the webpage",
+  //    "uriTemplate": "yao://scripts/mcp/webpage/Articles/{id}",
+  //    "mimeType": "application/json"
+  //  },
+  //  ...
+  // ]
+  "resources": [
+    {
+      "name": "Settings",
+      "description": "Access settings of the webpage",
+      "uri": "yao://scripts/mcp/webpage/Settings",
+      "mimeType": "application/json"
+    },
+    {
+      "name": "Articles",
+      "description": "Access articles for the webpage",
+      "uriTemplate": "yao://scripts/mcp/webpage/Articles/{id}",
+      "mimeType": "application/json"
+    },
+    {
+      "name": "Pages",
+      "description": "Access files of the webpage",
+      "uriTemplate": "yao://scripts/mcp/webpage/Pages/{route}",
+      "mimeType": "text/html"
+    }
+  ],
+
+  // === Prompts ===
+  // `prompts` defines the static set of prompts that this MCP server exposes to clients.
+  // To support dynamic prompts, bind the "prompts" field to a Yao process, for example:
+  // "prompts": "scripts.mcp.webpage.Prompts"
+  //
+  // The MCP server will then call the process to get the prompts.
+  // The prompts should be in the format of:
+  // [
+  //  {
+  //    "name": "Create Webpage",
+  //    "description": "Create a new webpage",
+  //    "process": "scripts.mcp.webpage.PromptCreate",
+  //    "arguments": [
+  //      {
+  //        "name": "language",
+  //        "description": "The language of the webpage, e.g. 'en', 'zh'",
+  //        "required": true
+  //      },
+  //      ...
+  //    ]
+  "prompts": [
+    {
+      "name": "Create Webpage",
+      "description": "Create a new webpage",
+      "process": "scripts.mcp.webpage.PromptCreate",
+      "arguments": [
+        {
+          "name": "language",
+          "description": "The language of the webpage, e.g. 'en', 'zh'",
+          "required": true
+        },
+        {
+          "name": "style",
+          "description": "The style of the webpage, e.g. 'modern', 'tech'",
+          "required": true
+        }
+      ]
+    }
+  ],
+
+  // === Tools ===
+  // `tools` defines the static set of tools that this MCP server exposes to clients.
+  // To support dynamic tools, bind the "tools" field to a Yao process, for example:
+  // "tools": "scripts.mcp.webpage.Tools"
+  //
+  // The MCP server will then call the process to get the tools.
+  // The tools should be in the format of:
+  // [
+  //  {
+  //    "name": "create_webpage",
+  //    "description": "Create a new webpage",
+  //    "process": "scripts.mcp.webpage.Create",
+  //    "inputSchema": {
+  //      "type": "object",
+  //      "properties": {
+  //        "route": {
+  //          "type": "string",
+  //          "description": "The route of the webpage"
+  //        },
+  //        "prompt": {
+  //          "type": "string",
+  //          "description": "The prompt of the webpage"
+  //        }
+  //      },
+  //      "required": ["route", "prompt"]
+  //    }
+  //  },
+  //  ...
+  // ]
+  "tools": [
+    {
+      "name": "create_webpage",
+      "description": "Create a new webpage",
+      "process": "scripts.mcp.webpage.Create",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "route": {
+            "type": "string",
+            "description": "The route of the webpage"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "The prompt of the webpage"
+          }
+        },
+        "required": ["route", "prompt"]
+      }
+    }
+  ]
+}

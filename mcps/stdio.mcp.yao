@@ -1,0 +1,10 @@
+{
+  "type": "stdio",
+  "label": "MCP Client STDIO Test",
+  "description": "MCP Client STDIO Test",
+  "name": "stdio",
+  "command": "hello",
+  "arguments": ["hello"],
+  "env": { "API_KEY": "123456" },
+  "timeout": 10000
+}

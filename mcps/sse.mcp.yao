@@ -1,0 +1,9 @@
+{
+  "type": "sse",
+  "label": "MCP Client SSE Test",
+  "description": "MCP Client SSE Test",
+  "name": "sse",
+  "url": "http://127.0.0.1:8080/mcp/sse",
+  "authorization_token": "Bearer 123456",
+  "timeout": 120000
+}
