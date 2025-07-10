@@ -3,7 +3,7 @@
   "label": "MCP Client SSE Test",
   "description": "MCP Client SSE Test",
   "name": "sse",
-  "url": "http://127.0.0.1:8080/mcp/sse",
-  "authorization_token": "Bearer 123456",
-  "timeout": 120000
+  "url": "$ENV.MCP_TEST_URL",
+  "authorization_token": "$ENV.MCP_TEST_TOKEN",
+  "timeout": "120s"
 }

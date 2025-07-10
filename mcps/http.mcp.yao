@@ -3,7 +3,7 @@
   "transport": "http",
   "label": "MCP Client HTTP Test",
   "description": "MCP Client HTTP Test",
-  "url": "https://api.github.com/users/yaoapp",
-  "authorization_token": "Bearer 123456",
-  "timeout": 10000
+  "url": "$ENV.MCP_TEST_URL",
+  "authorization_token": "$ENV.MCP_TEST_TOKEN",
+  "timeout": "10s"
 }

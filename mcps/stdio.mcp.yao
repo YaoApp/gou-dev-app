@@ -5,6 +5,6 @@
   "name": "stdio",
   "command": "hello",
   "arguments": ["hello"],
-  "env": { "API_KEY": "123456" },
-  "timeout": 10000
+  "env": { "API_KEY": "$ENV.MCP_TEST_KEY" },
+  "timeout": "10s"
 }
