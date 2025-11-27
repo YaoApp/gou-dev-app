@@ -1,0 +1,2 @@
+{"name":"simple_api","description":"Analyze a simple API with mixed security","input":{"api":{"name":"user","version":"1.0","paths":[{"path":"/signup","method":"POST"},{"path":"/login","method":"POST"},{"path":"/profile","method":"GET","guard":"bearer-jwt"},{"path":"/profile","method":"PUT","guard":"bearer-jwt"}]}},"output":"API Analysis Report\n===================\n\nName: user\nVersion: 1.0\nTotal Paths: 4\n\nMethod Distribution:\n  POST: 2\n  GET: 1\n  PUT: 1\n\n⚠️  Warning: 2 path(s) without guards:\n  - POST /signup\n  - POST /login\n"}
+

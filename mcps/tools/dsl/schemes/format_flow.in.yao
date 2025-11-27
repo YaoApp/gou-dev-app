@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "description": "Format a Yao flow DSL for better readability",
+  "properties": {
+    "flow": {
+      "type": "object",
+      "description": "The flow DSL object to format",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Flow name"
+        },
+        "nodes": {
+          "type": "array",
+          "description": "Flow nodes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "process": {
+                "type": "string"
+              },
+              "args": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "required": ["name", "nodes"]
+    },
+    "indent": {
+      "type": "integer",
+      "description": "Number of spaces for indentation",
+      "default": 2,
+      "minimum": 0,
+      "maximum": 8
+    }
+  },
+  "required": ["flow"]
+}

@@ -1,0 +1,3 @@
+{"name":"simple_status","description":"Get basic status without verbose","input":{"verbose":false},"output":"System Status: OK\n"}
+{"name":"verbose_status","description":"Get detailed status information","input":{"verbose":true},"output":"System Status: OK\n\nDetails:\n- Server: Running\n- Time: 2024-11-27T10:30:00.000Z\n- MCP Version: 2025-06-18\n- Tools Available: 3\n"}
+

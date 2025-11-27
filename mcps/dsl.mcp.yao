@@ -1,0 +1,19 @@
+// Yao MCP Server for DSL Operations
+{
+  "label": "DSL Operations MCP Server",
+  "description": "MCP server providing tools for Yao DSL validation, formatting, and analysis",
+  "transport": "process",
+  "url": "/dsl",
+  "capabilities": {
+    "tools": { "listChanged": false }
+  },
+
+  // === Tools ===
+  // Tool names and their process mappings
+  // Schema files are in mcps/tools/dsl/schemes/ directory
+  "tools": {
+    "validate_model": "scripts.dsl.ValidateModel",
+    "format_flow": "scripts.dsl.FormatFlow",
+    "analyze_api": "scripts.dsl.AnalyzeAPI"
+  }
+}

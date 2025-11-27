@@ -1,0 +1,25 @@
+{
+  "name": "review_api",
+  "description": "Review an API definition and provide improvement suggestions",
+  "arguments": [
+    {
+      "name": "api_name",
+      "description": "Name of the API to review",
+      "required": true
+    },
+    {
+      "name": "focus_area",
+      "description": "Focus area: 'security', 'performance', 'design', or 'all'",
+      "required": false
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "type": "text",
+        "text": "Please review the '{{api_name}}' API definition. Focus area: {{focus_area}}.\n\nUse the analyze_api tool to get the API analysis report.\n\nProvide suggestions for:\n- Security (guards, authentication, authorization)\n- Performance (caching, query optimization)\n- Design (REST principles, naming conventions)\n- Error handling\n- Documentation\n\nFormat the review as a structured report with clear action items."
+      }
+    }
+  ]
+}

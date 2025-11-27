@@ -1,0 +1,16 @@
+// Echo MCP Server for Testing
+{
+  "label": "Echo Test Server",
+  "description": "Simple MCP server with ping and status tools for testing",
+  "transport": "process",
+  "url": "/test",
+  "capabilities": {
+    "tools": { "listChanged": false }
+  },
+
+  // === Tools ===
+  "tools": {
+    "ping": "scripts.echo.Ping",
+    "status": "scripts.echo.Status"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "description": "Get system status information",
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "Return detailed status information",
+      "default": false
+    }
+  }
+}
+

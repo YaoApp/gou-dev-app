@@ -1,0 +1,30 @@
+{
+  "name": "create_model",
+  "description": "Generate a Yao model DSL definition based on requirements",
+  "arguments": [
+    {
+      "name": "table_name",
+      "description": "Database table name",
+      "required": true
+    },
+    {
+      "name": "fields",
+      "description": "Comma-separated field definitions (e.g., 'name:string, email:string, age:integer')",
+      "required": true
+    },
+    {
+      "name": "with_timestamps",
+      "description": "Include created_at and updated_at fields (yes/no)",
+      "required": false
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "type": "text",
+        "text": "Please create a Yao model DSL for the '{{table_name}}' table with the following fields: {{fields}}. Include timestamps: {{with_timestamps}}.\n\nRequirements:\n1. Generate proper column definitions with appropriate types\n2. Add an 'id' field as the primary key (type: ID)\n3. Set nullable=false for required fields\n4. Include proper indexes if needed\n5. Format the output as valid JSON\n\nAfter generating, use the validate_model tool to verify the model is correct."
+      }
+    }
+  ]
+}

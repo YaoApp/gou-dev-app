@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "description": "Model validation result with detailed information",
+  "properties": {
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the model DSL is valid"
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of validation errors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Field path with error (e.g., 'columns[0].type')"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["error", "warning"],
+            "description": "Error severity"
+          }
+        },
+        "required": ["field", "message", "severity"]
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "List of validation warnings",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "description": "Model statistics",
+      "properties": {
+        "column_count": {
+          "type": "integer",
+          "description": "Number of columns"
+        },
+        "has_primary_key": {
+          "type": "boolean",
+          "description": "Whether model has a primary key"
+        },
+        "has_timestamps": {
+          "type": "boolean",
+          "description": "Whether model has timestamp columns"
+        }
+      }
+    }
+  },
+  "required": ["valid", "errors"]
+}

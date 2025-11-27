@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "description": "Ping response with metadata",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Response message",
+      "const": "pong"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of pings received"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO 8601 timestamp"
+    }
+  },
+  "required": ["message", "count", "timestamp"]
+}

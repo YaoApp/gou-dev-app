@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "description": "Validate a Yao model DSL definition",
+  "properties": {
+    "model": {
+      "type": "object",
+      "description": "The model DSL object to validate",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Model name"
+        },
+        "table": {
+          "type": "object",
+          "description": "Table configuration",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Table name"
+            }
+          },
+          "required": ["name"]
+        },
+        "columns": {
+          "type": "array",
+          "description": "Column definitions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "type"]
+          }
+        }
+      },
+      "required": ["name", "table", "columns"]
+    }
+  },
+  "required": ["model"]
+}

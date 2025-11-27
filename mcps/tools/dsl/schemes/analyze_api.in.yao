@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "description": "Analyze a Yao API DSL and provide insights",
+  "properties": {
+    "api": {
+      "type": "object",
+      "description": "The API DSL object to analyze",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "API name"
+        },
+        "version": {
+          "type": "string",
+          "description": "API version"
+        },
+        "paths": {
+          "type": "array",
+          "description": "API paths",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string",
+                "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+              },
+              "guard": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": ["name", "paths"]
+    }
+  },
+  "required": ["api"]
+}
