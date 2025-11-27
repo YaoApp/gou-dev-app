@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "description": "Update an existing customer",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Customer ID to update",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "Customer name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email address",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Customer phone number"
+    },
+    "status": {
+      "type": "string",
+      "description": "Customer status",
+      "enum": ["active", "inactive"]
+    }
+  },
+  "required": ["id"],
+  "additionalProperties": false
+}
+

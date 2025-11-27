@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "description": "Updated customer response",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Customer ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Customer name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Customer phone"
+    },
+    "status": {
+      "type": "string",
+      "description": "Customer status"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Update timestamp"
+    }
+  },
+  "required": ["id", "name", "email", "status", "updated_at"]
+}
+

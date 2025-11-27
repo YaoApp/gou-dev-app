@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "description": "Create a new customer",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Customer name",
+      "minLength": 1
+    },
+    "email": {
+      "type": "string",
+      "description": "Customer email address",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Customer phone number"
+    },
+    "status": {
+      "type": "string",
+      "description": "Customer status",
+      "enum": ["active", "inactive"],
+      "default": "active"
+    }
+  },
+  "required": ["name", "email"],
+  "additionalProperties": false
+}
+

@@ -1,0 +1,25 @@
+{
+  "name": "manage_customer",
+  "description": "Help manage customer operations",
+  "arguments": [
+    {
+      "name": "operation",
+      "description": "Operation to perform: create, update, or read",
+      "required": true
+    },
+    {
+      "name": "customer_id",
+      "description": "Customer ID (required for update and read)",
+      "required": false
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "type": "text",
+        "text": "Help me {{operation}} a customer. {{customer_id}}\n\nAvailable operations:\n- Create: Use create_customer tool with name, email, phone (optional), and status\n- Update: Use update_customer tool with id and fields to update\n- Read: Use customer resource with URI customer://{{customer_id}}\n\nPlease guide me through the {{operation}} operation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+// Customer Management MCP Server
+{
+  "label": "Customer Management",
+  "description": "MCP server for customer resource management with CUR operations",
+  "transport": "process",
+  "endpoint": "/customer",
+  "capabilities": {
+    "tools": { "listChanged": false },
+    "resources": { "subscribe": true, "listChanged": false }
+  },
+
+  // === Tools ===
+  "tools": {
+    "create_customer": "models.customer.Create",
+    "update_customer": "models.customer.Update"
+  },
+
+  // === Resources ===
+  "resources": {
+    "detail": "models.customer.Find", // customers://{id}
+    "list": "models.customer.Paginate" // customers://list?page={page}&pagesize={pagesize}&where={where}
+  }
+}
