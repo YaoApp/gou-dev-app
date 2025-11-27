@@ -3,31 +3,28 @@
   "name": "list",
   "description": "Get customer list with query parameters",
   "mimeType": "application/json",
-  "parameters": {
-    "page": {
-      "type": "integer",
+  "parameters": [
+    {
+      "name": "page",
       "description": "Page number",
-      "default": 1,
-      "minimum": 1
+      "required": false
     },
-    "pagesize": {
-      "type": "integer",
+    {
+      "name": "pagesize",
       "description": "Number of items per page",
-      "default": 10,
-      "minimum": 1,
-      "maximum": 100
+      "required": false
     },
-    "where": {
-      "type": "string",
+    {
+      "name": "where",
       "description": "Filter condition (JSON string)",
-      "default": "{}"
+      "required": false
     },
-    "order": {
-      "type": "string",
+    {
+      "name": "order",
       "description": "Sort order field",
-      "default": "id desc"
+      "required": false
     }
-  },
+  ],
   "schema": {
     "type": "object",
     "description": "Paginated customer list response",
