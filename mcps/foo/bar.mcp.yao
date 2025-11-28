@@ -1,0 +1,14 @@
+{
+  "label": "Multi-level Test MCP Server",
+  "description": "Test MCP server to verify multi-level directory path conversion (foo.bar → foo/bar)",
+  "transport": "process",
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": {
+    "test_action": "scripts.test.Action"
+  }
+}
+

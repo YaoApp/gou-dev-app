@@ -1,0 +1,3 @@
+{"input": {"message": "hello world"}, "output": {"status": "success", "message": "hello world"}, "metadata": {"description": "Simple test"}}
+{"input": {"message": "test foo.bar path"}, "output": {"status": "success", "message": "test foo.bar path"}, "metadata": {"description": "Path test"}}
+

@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "description": "Test action for multi-level path verification",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Test message"
+    }
+  },
+  "required": ["message"],
+  "additionalProperties": false,
+  "x-process-args": ["$args.message"]
+}
+
