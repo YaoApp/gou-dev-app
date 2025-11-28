@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "description": "Test nested field extraction",
+  "properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User name"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "description": "Email address"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Phone number"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["user"],
+
+  // Test nested field extraction using dot notation
+  "x-process-args": [
+    "$args.user.name",           // Extract user.name
+    "$args.user.contact.email",  // Extract user.contact.email
+    "$args.metadata.source"      // Extract metadata.source (optional)
+  ]
+}
+

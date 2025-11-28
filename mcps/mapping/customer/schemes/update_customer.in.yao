@@ -27,6 +27,11 @@
     }
   },
   "required": ["id"],
-  "additionalProperties": false
-}
+  "additionalProperties": false,
 
+  // Yao Process mapping: ID first, then the update data object
+  "x-process-args": [
+    "$args.id", // Extract arguments.id -> positional arg 1
+    ":arguments" // Pass entire arguments object -> positional arg 2
+  ]
+}

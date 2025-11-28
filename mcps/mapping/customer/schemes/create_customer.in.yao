@@ -24,6 +24,14 @@
     }
   },
   "required": ["name", "email"],
-  "additionalProperties": false
-}
+  "additionalProperties": false,
 
+  // Yao Process mapping: convert MCP named parameters to positional arguments
+  // If not specified, the entire arguments object is passed as the first parameter
+  "x-process-args": [
+    "$args.name", // Extract arguments.name -> positional arg 1
+    "$args.email", // Extract arguments.email -> positional arg 2
+    "$args.phone", // Extract arguments.phone -> positional arg 3
+    "$args.status" // Extract arguments.status -> positional arg 4
+  ]
+}

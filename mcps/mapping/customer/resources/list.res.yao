@@ -25,6 +25,14 @@
       "required": false
     }
   ],
+
+  // Yao Process mapping: extract URI and specific query parameters as positional args
+  "x-process-args": [
+    "$args.page",      // Extract page parameter
+    "$args.pagesize",  // Extract pagesize parameter
+    "$args.where",     // Extract where parameter (JSON string)
+    "$args.order"      // Extract order parameter
+  ],
   "schema": {
     "type": "object",
     "description": "Paginated customer list response",

@@ -3,6 +3,13 @@
   "name": "detail",
   "description": "Get customer detail by ID",
   "mimeType": "application/json",
+
+  // Yao Process mapping: extract ID from URI
+  // For detail resource with URI template, {id} is extracted and passed
+  "x-process-args": [
+    "$uri.id" // Extract {id} from URI path
+  ],
+
   "schema": {
     "type": "object",
     "description": "Customer data structure",
