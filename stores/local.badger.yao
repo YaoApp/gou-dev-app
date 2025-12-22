@@ -1,6 +1,0 @@
-{
-  "name": "Badger",
-  "description": "Badger",
-  "type": "badger",
-  "option": { "path": "badger/db" }
-}
