@@ -1,0 +1,10 @@
+{
+  "LANG": "1.0.0",
+  "VERSION": "1.0.0",
+  "label": "ANTHROPIC TEST",
+  "type": "anthropic",
+  "options": {
+    "model": "claude-sonnet-4-20250514",
+    "key": "$ENV.ANTHROPIC_TEST_KEY"
+  }
+}
