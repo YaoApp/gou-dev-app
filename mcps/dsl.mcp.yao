@@ -2,6 +2,11 @@
 {
   "label": "DSL Operations MCP Server",
   "description": "MCP server providing tools for Yao DSL validation, formatting, and analysis",
+  "version": "1.0.0",
+  "tags": ["dsl", "validation", "tools"],
+  "dependencies": {
+    "echo": ">=1.0.0"
+  },
   "transport": "process",
   "url": "/dsl",
   "capabilities": {

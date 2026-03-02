@@ -2,6 +2,12 @@
 {
   "label": "Customer Management",
   "description": "MCP server for customer resource management with CUR operations",
+  "version": "2.0.0",
+  "tags": ["customer", "crm", "resources"],
+  "dependencies": {
+    "echo": ">=1.0.0",
+    "dsl": "^1.0.0"
+  },
   "transport": "process",
   "endpoint": "/customer",
   "capabilities": {

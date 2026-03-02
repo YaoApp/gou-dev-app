@@ -2,6 +2,8 @@
 {
   "label": "Echo Test Server",
   "description": "Simple MCP server with ping and status tools for testing",
+  "version": "1.0.0",
+  "tags": ["testing", "echo"],
   "transport": "process",
   "url": "/test",
   "capabilities": {

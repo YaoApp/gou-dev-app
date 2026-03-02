@@ -2,6 +2,8 @@
   "transport": "stdio",
   "label": "MCP Client STDIO Test",
   "description": "MCP Client STDIO Test",
+  "version": "1.0.0",
+  "tags": ["testing", "stdio"],
   "name": "stdio",
   "command": "hello",
   "arguments": ["hello"],
