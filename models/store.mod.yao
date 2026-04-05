@@ -1,0 +1,23 @@
+{
+  "name": "Store",
+  "table": { "name": "store", "comment": "Key-Value Store" },
+  "columns": [
+    {
+      "label": "Key",
+      "name": "key",
+      "type": "string",
+      "length": 256,
+      "primary": true
+    },
+    {
+      "label": "Data",
+      "name": "data",
+      "type": "json",
+      "nullable": true
+    }
+  ],
+  "relations": {},
+  "values": [],
+  "indexes": [],
+  "option": { "timestamps": true }
+}
